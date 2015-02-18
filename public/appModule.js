@@ -10,14 +10,16 @@ app.config(function($routeProvider) {
 
 			}
 		})
-		.when("/auth/user", {
+		.when("/user", {
 			templateUrl: "public.templates/user.html",
 			controller: "UserCtrlr",
 			resolve: {
-
+				user: function(userService) {
+					return userService.updateUser();
+				}
 			}
 		})
-		.when("/auth/calendar", {
+		.when("/calendar", {
 			templateUrl: "public.templates/calendar.html",
 			controller: "CalendarCtrlr",
 			resolve: {
