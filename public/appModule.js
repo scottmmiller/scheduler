@@ -14,8 +14,11 @@ app.config(function($routeProvider) {
 			templateUrl: "public.templates/user.html",
 			controller: "UserCtrlr",
 			resolve: {
-				user: function(userService) {
+				updateUser: function(userService) {
 					return userService.updateUser();
+				},
+				getUser: function(userService) {
+					return userService.getUser();
 				}
 			}
 		})

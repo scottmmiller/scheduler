@@ -1,9 +1,16 @@
 var app = angular.module("scheduler");
 
-app.controller("UserCtrlr", function($scope, user) {
+app.controller("UserCtrlr", function($scope, updateUser, getUser) {
 
 	$scope.test = "UserCtrlr Test";
 
-	$scope.user = user;
+	$scope.user = function(user) {
+		if(!user) {
+			return updateUser;
+		} else {
+			return getUser;
+		}
+
+	};
 
 });
