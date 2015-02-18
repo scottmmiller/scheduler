@@ -6,8 +6,13 @@ var Session = require("express-session");
 var Moment = require("moment");
 var Mongoose = require("mongoose");
 var Passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+var Bcrypt = require("bcrypt-nodejs");
 
+
+
+//PORTS
 var port = 9999;
 var MongoUri = "mongodb://localhost:27017/scheduler";
 
@@ -15,16 +20,17 @@ var app = Express();
 
 
 //CONTROLLERS********************
+var User = require("./lib/server.models/server.userModel");
 var UserCtrlr = require("./lib/server.controllers/server.UserCtrlr");
 
 
 
 //MIDDLEWARE*********************
-app.use(BodyParser.json());
 app.use(Express.static(__dirname + "/public"));
+app.use(BodyParser.json());
 app.use(Session({ secret: "schedulerSIKRIT" }));  //MUST be used prior to Passport.Session;
-app.use(Passport.Session());
 app.use(Passport.initialize());
+app.use(Passport.session());
 
 
 //SERIALIZATIONS / DESERIALIZATIONS
@@ -38,6 +44,20 @@ Passport.deserializeUser(function(obj, done) {
 
 
 //STRATEGIES
+Passport.use(new LocalStrategy({
+	// usernameField: ,
+	// passwordField: 
+	}, function(username, password, done) {
+		User.findOne({ username: username }, function(error, user) {
+			if(!user) {
+				return done(null, false, { message: "Incorrect Username" });
+			}
+			if(!user.validPassword(password)) {
+				return done(null, false, { message: "Incorrect Password" });
+			}
+		});
+}));
+
 Passport.use(new GoogleStrategy({
     clientID: "889269205616-h159qj74s29tekdu5kjtad84v4145b94.apps.googleusercontent.com",
     clientSecret: "2X8L2ym2gZMhlUzS97Egrz8_",
@@ -52,21 +72,57 @@ Passport.use(new GoogleStrategy({
 
 
 //AUTHENTICATION REQUESTS********
-app.get('/auth/google',	passport.authenticate('google', { 
+var isAuthed = function(req, res, next) {
+	if(!req.isAuthenticated()) {
+		return res.status(403).end();
+	}
+	else {
+		return next();
+	}
+};
+
+
+//***********************LOCAL************************
+app.post("/api/auth", Passport.authenticate('local', {
+	successRedirect: '/auth/',
+	failureRedirect: "/"
+}));
+
+app.post("/api/register", function(req, res) {
+	var newUser = new User(req.body);
+	newUser.save(function(error, user) {
+		if(!error) {
+			return res.json(user);
+		}
+		else {
+			return res.status(500).json(error);
+		}
+	});
+});
+
+
+//**********************GOOGLE***********************
+app.get('/auth/google',	Passport.authenticate('google', { 
 	scope: 'https://www.googleapis.com/auth/plus.login'
 	})
 );
-
-app.get('/auth/google/callback', passport.authenticate('google', { 
-  	successRedirect: "/auth/user" + req.user.username,
+app.get('/auth/google/callback', Passport.authenticate('google', { 
+  	successRedirect: "/auth/user",
   	failureRedirect: '/home'
 	})
  );
 
 
+//********************FACEBOOK***********************
+//********************INSTAGRAM***********************
+//********************TWITTER************************
+//********************GITHUB**************************
+
+
+
+
 
 //ENDPOINTS**********************
-
 
 
 //CONNECTIONS********************
