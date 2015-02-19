@@ -20,3 +20,22 @@ html, body {
 .register {
 	margin: 1em;
 }
+
+.userPage {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.profileImage {
+	height: 10em;
+	width: 10em;
+}
+
+.time {
+	width: 10%;
+}
+
+iframe {
+	float: left;
+	margin: 0 auto;}
+}

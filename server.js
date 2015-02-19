@@ -69,7 +69,7 @@ Passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     UserCtrlr.updateOrCreate(profile).then(function(results) {
-    	done(null, profile);
+    	done(null, results);
     }, function(error) {
     	done(error, profile);
     });
@@ -83,6 +83,7 @@ var isAuthed = function(req, res, next) {
 		return res.status(403).end();
 	}
 	else {
+		console.log("IS AUTHED")
 		return next();
 	}
 };
@@ -114,7 +115,7 @@ app.get('/auth/google',	Passport.authenticate('google', {
 );
 app.get('/auth/google/callback', Passport.authenticate('google', { 
   	successRedirect: "/#/user",
-  	failureRedirect: '/auth/failure'
+  	failureRedirect: '/'
 	})
  );
 
@@ -130,6 +131,7 @@ app.get('/auth/google/callback', Passport.authenticate('google', {
 
 //ENDPOINTS**********************
 app.get("/api/user", isAuthed, UserCtrlr.getUser);
+// app.get("/api/calendar", isAuthed);
 
 //CONNECTIONS********************
 Mongoose.connect(MongoUri);

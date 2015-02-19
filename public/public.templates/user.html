@@ -1,8 +1,14 @@
 <div>
-	<div class='userPage'> <h1> Welcome to the User Dashboard </h1> </div>
+	<div class='userPage'> <h1> Welcome to {{user.display_name}}'s Dashboard </h1> </div>
 
-	{{test}}
+<!-- 	{{test}}
+ -->
+	{{user.display_name}} <br />
+	{{user.plusLink}} <br />
+	<img src={{user.picture}} class='profileImage' /> <br />
 
-	{{user.name}}
+	<div class="calendar">
+		<a href='/#/default/calendar'> <button class='btn btn-primary'> Calendar </button> </a> <br />
+	</div>
 
 </div>

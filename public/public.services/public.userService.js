@@ -1,23 +1,26 @@
 var app = angular.module("scheduler");
 
-app.service("userService", function($http, $q) {
+app.service("userService", function($http, $q, $location) {
 
 		var user = {};
 
-		this.updateUser = function() {
+		this.getUser = function() {
+			// var deferred = $q.defer();
 			return $http({
 				method: "GET",
 				url: "/api/user"
 			}).then(function(results) {
-				user = res.data;
-				console.log("User updated: ", user);
-				return user;
+				var user = results.data;
+					console.log(results)
+					return user;
+			}, function(error) {
+				if(error.status === 403) {
+					return $location.path("/");
+				}
 			});
+
 		};
 
-		this.getUser = function() {
-		return user;
-	};
 
 
 });
