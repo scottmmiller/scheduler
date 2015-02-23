@@ -9,6 +9,7 @@ var Passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var Bcrypt = require("bcrypt-nodejs");
+var Cors = require("cors")
 
 
 
@@ -28,6 +29,7 @@ var UserCtrlr = require("./lib/server.controllers/server.UserCtrlr");
 //MIDDLEWARE*********************
 app.use(Express.static(__dirname + "/public"));
 app.use(BodyParser.json());
+app.use(Cors());
 app.use(Session({ 
 	secret: "schedulerSIKRIT", 
 	saveUninitialized: true,

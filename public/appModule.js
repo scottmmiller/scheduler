@@ -1,4 +1,4 @@
-var app = angular.module("scheduler", ["ngRoute"]);
+var app = angular.module("scheduler", ["ngRoute", "ui.calendar", "ui.bootstrap"]);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -19,8 +19,8 @@ app.config(function($routeProvider) {
 			}
 		})
 		.when("/default/calendar", {
-			templateUrl: "public.templates/calendar.html",
-			controller: "UserCtrlr",
+			templateUrl: "public.templates/fullCalendar.html",
+			controller: "CalendarCtrlr",
 			resolve: {
 				user: function(userService) {
 					return userService.getUser();
@@ -30,3 +30,5 @@ app.config(function($routeProvider) {
 		.otherwise("/");
 
 });
+
+

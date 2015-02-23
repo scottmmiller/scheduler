@@ -6,4 +6,6 @@ app.controller("UserCtrlr", function($scope, user) {
 
 	$scope.user = user;
 
+
+
 });
