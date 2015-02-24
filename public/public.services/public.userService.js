@@ -21,6 +21,17 @@ app.service("userService", function($http, $q, $location) {
 
 		};
 
+		// this.putCalendar = function() {
+		// 	return $http({
+	 //        	method: "POST",
+	 //        	url: "/api/calendar"
+	 //        }).then(function(results) {
+	 //        	console.log(results)
+	 //        }, function(error) {
+	 //        	return error;
+	 //        })
+		// }
+
 
 
 });

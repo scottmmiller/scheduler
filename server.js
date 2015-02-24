@@ -23,6 +23,7 @@ var app = Express();
 //CONTROLLERS********************
 var User = require("./lib/server.models/server.userModel");
 var UserCtrlr = require("./lib/server.controllers/server.UserCtrlr");
+var CalendarCtrlr = require("./lib/server.controllers/server.CalendarCtrlr");
 
 
 
@@ -113,6 +114,7 @@ var isAuthed = function(req, res, next) {
 //**********************GOOGLE***********************
 app.get('/auth/google',	Passport.authenticate('google', { 
 	scope: 'https://www.googleapis.com/auth/plus.login'
+	// "https://www.googleapis.com/auth/calendar"
 	})
 );
 app.get('/auth/google/callback', Passport.authenticate('google', { 
@@ -120,6 +122,7 @@ app.get('/auth/google/callback', Passport.authenticate('google', {
   	failureRedirect: '/'
 	})
  );
+
 
 
 //********************FACEBOOK***********************
@@ -133,7 +136,8 @@ app.get('/auth/google/callback', Passport.authenticate('google', {
 
 //ENDPOINTS**********************
 app.get("/api/user", isAuthed, UserCtrlr.getUser);
-// app.get("/api/calendar", isAuthed);
+
+app.post("/api/calendar", isAuthed, CalendarCtrlr.putCalendar);
 
 //CONNECTIONS********************
 Mongoose.connect(MongoUri);

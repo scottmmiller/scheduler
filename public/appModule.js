@@ -25,6 +25,9 @@ app.config(function($routeProvider) {
 				user: function(userService) {
 					return userService.getUser();
 				}
+				// putCalendar: function(userService) {
+				// 	return userService.putCalendar();
+				// }
 			}
 		})
 		.otherwise("/");
