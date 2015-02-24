@@ -1,4 +1,6 @@
-var app = angular.module("scheduler", ["ngRoute", "ui.calendar", "ui.bootstrap"]);
+"use strict";
+
+var app = angular.module("scheduler", ["ngRoute", "ui.calendar", "ui.bootstrap", "firebase"]);
 
 app.config(function($routeProvider) {
 	$routeProvider

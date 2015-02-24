@@ -9,7 +9,8 @@ var Passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var Bcrypt = require("bcrypt-nodejs");
-var Cors = require("cors")
+var Cors = require("cors");
+var Firebase = require("firebase");
 
 
 
