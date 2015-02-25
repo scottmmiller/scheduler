@@ -15,23 +15,27 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, user) {
 		calendar: {
 			// height: "auto",
 			allDayDefault: false,
-			// forceEventDuration: true,
+			forceEventDuration: true,
 			weekends: false,
-			// defaultTimedEventDuration: "01:00:00",
+			defaultTimedEventDuration: "01:00:00",
 			defaultView: "agendaWeek",
 			minTime: "09:00:00",
 			maxTime: "17:00:00",
 			dayClick: function(date, jsEvent, view) {
 				var dateObj = {};
+				var date2 = new Date(date.getTime());
+				var date3 = new Date(date.getTime()+3600000);
 				dateObj.title = "Time Slot Filled";
 				dateObj.start =  date.toDateString() + " at " + date.toLocaleTimeString();
+		        $scope.events.push({title: dateObj.title, start: date2, end: date3});
+				
 				date.setHours(date.getHours()+1);
 				dateObj.end = date.toDateString() + " at " + date.toLocaleTimeString();
 				// console.log(date.toDateString() + " @ " + date.toLocaleTimeString())
 
 				//****PUSH TO EVENTS ARRAY******
-		        $scope.events.push(dateObj);
-		        // console.log(dateObj)
+		        // console.log($scope.events)
+		        // console.log(dateObj.title + " on " + dateObj.start)
 
 		        //****PUSH TO FIREBASE****
 		        firebaseRef.push(dateObj);

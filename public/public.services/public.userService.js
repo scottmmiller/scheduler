@@ -11,7 +11,7 @@ app.service("userService", function($http, $q, $location) {
 				url: "/api/user"
 			}).then(function(results) {
 				var user = results.data;
-					console.log(results)
+					// console.log(results)
 					return user;
 			}, function(error) {
 				if(error.status === 403) {
