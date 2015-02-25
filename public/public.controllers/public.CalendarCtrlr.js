@@ -26,7 +26,7 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, user) {
 				var date2 = new Date(date.getTime());
 				var date3 = new Date(date.getTime()+3600000);
 				dateObj.title = "Time Slot Filled";
-				dateObj.start =  date.toDateString() + " at " + date.toLocaleTimeString();
+				dateObj.start =  date.toDateString() + " at " + date.getHours() + ":" + date.getMinutes();
 		        $scope.events.push({title: dateObj.title, start: date2, end: date3});
 				
 				date.setHours(date.getHours()+1);
