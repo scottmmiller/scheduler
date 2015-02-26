@@ -114,8 +114,8 @@ var isAuthed = function(req, res, next) {
 
 //**********************GOOGLE***********************
 app.get('/auth/google',	Passport.authenticate('google', { 
-	scope: 'https://www.googleapis.com/auth/plus.login'
-	// "https://www.googleapis.com/auth/calendar"
+	scope: ['https://www.googleapis.com/auth/plus.login',
+	"https://www.googleapis.com/auth/calendar"]
 	})
 );
 app.get('/auth/google/callback', Passport.authenticate('google', { 
@@ -123,6 +123,22 @@ app.get('/auth/google/callback', Passport.authenticate('google', {
   	failureRedirect: '/'
 	})
  );
+
+// app.get("/api/calendar/callback", Passport.authenticate("google", {
+// 	successRedirect: "/#/api/calendar", 
+// 	failureRedirect: "/auth/google"
+// 	})
+// );
+
+// app.delete("/api/calendar", Passport.authenticate("google", {
+// 	scope: "https://www.googleapis.com/auth/calendar"
+// 	})
+// );
+// app.delete("api/calendar/callback", Passport.authenticate("google", {
+// 	successRedirect: "/#/default/calendar",
+// 	failureRedirect: "/api/calendar"
+// 	})
+// );
 
 
 
@@ -138,7 +154,11 @@ app.get('/auth/google/callback', Passport.authenticate('google', {
 //ENDPOINTS**********************
 app.get("/api/user", isAuthed, UserCtrlr.getUser);
 
-app.post("/api/calendar", isAuthed, CalendarCtrlr.putCalendar);
+// app.post("/api/calendar", isAuthed, CalendarCtrlr.putCalendar);
+
+app.get("/api/calendar", isAuthed, CalendarCtrlr.getCalendar);
+
+app.delete("/api/calendar", isAuthed, CalendarCtrlr.deleteEvent);
 
 //CONNECTIONS********************
 Mongoose.connect(MongoUri);

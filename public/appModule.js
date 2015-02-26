@@ -26,9 +26,12 @@ app.config(function($routeProvider) {
 			resolve: {
 				user: function(userService) {
 					return userService.getUser();
+				}, 
+				calendar: function(userService) {
+					return userService.getCalendar();
 				}
-				// putCalendar: function(userService) {
-				// 	return userService.putCalendar();
+				// deleteEvent: function(userService) {
+				// 	return userService.deleteEvent();
 				// }
 			}
 		})
