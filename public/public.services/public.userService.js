@@ -28,18 +28,19 @@ app.service("userService", function($http, $q, $location) {
 			}).then(function(results) {
 				results.data = JSON.parse(results.data)
 				var calendar = results.data.items;
-					console.log("userService results: ", results.data);
+					// console.log("userService results: ", results.data);
 					return calendar;
 			})
 		};
 
 		this.deleteEvent = function(eventId) {
-			console.log("userServ: ", eventId)
+			// console.log("userServ: ", eventId)
 			return $http({
 	        	method: "DELETE",
 	        	url: "/api/calendar?eventId=" + eventId
 	        }).then(function(results) {
-	        	console.log(results)
+	        	return results;
+	        	// console.log(results)
 	        }, function(error) {
 	        	return error;
 	        })
@@ -49,4 +50,3 @@ app.service("userService", function($http, $q, $location) {
 
 });
 
-// eventId = https://www.google.com/calendar/event?eid=cWNsamIzdXBudHB0bDloN2JzM2UwajRkb2dfMjAxNTAyMjVUMjAwMDAwWiBoMWYyYTUybmhxbm1tNDdyZDZjYmN0bGVlMEBn

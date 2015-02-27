@@ -6,11 +6,15 @@ var gCalId = "h1f2a52nhqnmm47rd6cbctlee0@group.calendar.google.com";
 
 
 
-app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, user, calendar) {
+app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, user, calendar, uiCalendarConfig) {
 
 	var firebaseRef = new Firebase("https://schedulerapp.firebaseio.com/");
 
 	$scope.user = user;
+
+	$scope.deleteEvent = function(event){
+		return null;
+	}
 
 	$scope.uiConfig = {
 		calendar: {
@@ -55,15 +59,11 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, 
 		    	// console.log("pubCalCtrlr.$scope.events :", event)
 		    	var eventId = event.id;
 		    		// console.log(eventId)
-		    	userService.deleteEvent(eventId);
+		    	userService.deleteEvent(eventId).then(function() {
+		    		$("#calendar").fullCalendar("refetchEvents")
+		    	});
 		    	// console.log("pubCalCtlrl: ", calendar)
 		    },
-		    // eventMouseover: function(event, jsEvent, view) {
-		    // 	// if(event.url) {
-		    // 	// 	return event.url = false;
-		    // 	// }
-		    // 	console.log(event)
-		    // }
 		}
 	};
 
@@ -91,8 +91,3 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, 
 
 });
 
-// https://www.google.com/calendar/event?eid=cWNsamIzdXBudHB0bDloN2JzM2UwajRkb2dfMjAxNTAyMjVUMjAwMDAwWiBoMWYyYTUybmhxbm1tNDdyZDZjYmN0bGVlMEBn
-// https://www.google.com/calendar/event?eid=cWNsamIzdXBudHB0bDloN2JzM2UwajRkb2dfMjAxNTAyMjNUMjAwMDAwWiBoMWYyYTUybmhxbm1tNDdyZDZjYmN0bGVlMEBn
-// https://www.google.com/calendar/event?eid=cWNsamIzdXBudHB0bDloN2JzM2UwajRkb2dfMjAxNTAyMjVUMjAwMDAwWiBoMWYyYTUybmhxbm1tNDdyZDZjYmN0bGVlMEBn
-// https://www.google.com/calendar/event?eid=MnFnMWJram0xajFkMms0b2VtcThqOThkbzQgaDFmMmE1Mm5ocW5tbTQ3cmQ2Y2JjdGxlZTBAZw
-// https://www.google.com/calendar/event?eid=MnFnMWJram0xajFkMms0b2VtcThqOThkbzQgaDFmMmE1Mm5ocW5tbTQ3cmQ2Y2JjdGxlZTBAZw

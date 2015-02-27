@@ -72,7 +72,7 @@ Passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:9999/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    UserCtrlr.updateOrCreate(profile).then(function(results) {
+    UserCtrlr.updateOrCreate(profile, accessToken).then(function(results) {
     	done(null, results);
     }, function(error) {
     	done(error, profile);
