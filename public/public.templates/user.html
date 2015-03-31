@@ -1,14 +1,16 @@
-<div>
-	<div class='userPage'> <h1> Welcome to {{user.display_name}}'s Dashboard </h1> </div>
+<div class="user-page">
+	<div class='page-header'> 
+		<h1> Welcome to {{user.display_name}}'s Dashboard </h1> 
+	</div>
 
 <!-- 	{{test}}
  -->
+	<div class="calendar">
+		<a href='/#/default/calendar'> <button class='btn btn-primary'> Calendar </button> </a> <br />
+	</div>
 	{{user.display_name}} <br />
 	{{user.plusLink}} <br />
 	<img src={{user.picture}} class='profileImage' /> <br />
 
-	<div class="calendar">
-		<a href='/#/default/calendar'> <button class='btn btn-primary'> Calendar </button> </a> <br />
-	</div>
 
 </div>

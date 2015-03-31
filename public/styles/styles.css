@@ -1,9 +1,15 @@
 html, body {
+
 	height: 100%;
 	width: 100%;
 	margin: 0;
 	padding: 2em;
 }
+
+body {
+	/*background-image: url("http://www.hdimagewallpaper.com/wp-content/uploads/2015/02/Aurora-Borealis-13-HD-Images-Wallpapers.jpg")*/
+}
+
 
 .test {
 	border: 1px solid black;
@@ -11,6 +17,7 @@ html, body {
 }
 
 //AUTH HTML
+
 .loginButton {
 	display: inline-block;
 	width: 10%;
@@ -23,20 +30,20 @@ html, body {
 }
 
 //USER HTML
-.userPage {
-	text-align: center;
-	margin: 0 auto;
-}
-
 .profileImage {
-	height: 10em;
-	width: 10em;
+	height: 5em;
+	width: 5em;
 }
 
 
 //CALENDAR HTML
-.calendar-view {
-	text-align: center;
+.page-header {
+	text-align: right;
+	border: 1px solid green;
+}
+
+.calendar {
+	opacity: .80;
 }
 
 .time {
@@ -52,9 +59,3 @@ html, body {
 	font-size: 16px;
 }
 
-
-//GOOGLE CALENDAR HTML
-iframe {
-	float: left;
-	margin: 0 auto;}
-}

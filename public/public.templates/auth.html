@@ -1,5 +1,7 @@
-<div>
-	<div> <h1> Welcome to the Scheduler </h1> </div>
+<div class="auth-page">
+	<div class="page-header">
+		<h1> Welcome to Scheduler </h1>
+	</div>
 
 <!-- 	<div class="test"> {{test}} </div>
  -->
@@ -7,13 +9,34 @@
 <!-- 		<input type="text" placeholder="username" ng-model='username'> <br />
 		<input type="text" placeholder="password" ng-model='password'> <br />
 		<button ng-click="localLogin()"> Login </button> <br /> -->
-		<a href='/auth/google'> <button class='btn btn-default'> Google </button> </a> <br />
+		<!-- <button type="button" class="btn btn-primary bn-lg" data-toggle="modal" data-target="#googleSignin"> Google SignIn </button> -->
+		<a href='/auth/google'> <button class='btn btn-default'> Sign In </button> </a> <br />
+		<p> You will be signing in with your Google account </p>
+
 <!-- 		<a href='/auth/facebook'> <button class='btn btn-primary'  ng-click="facebookLogin()"> Facebook </button> </a> <br />
 		<a href='/auth/twitter'> <button class='btn btn-success'  ng-click="twitterLogin()"> Twitter </button> </a> <br />
 		<a href='/auth/instagram'> <button class='btn btn-info'  ng-click="instagramLogin()"> Instagram </button> </a> <br />
 		<a href='/auth/github'> <button class='btn btn-warning'  ng-click="githubLogin()"> Github </button> </a> <br /> -->
-		<a href="Register" class='register'> Register </a>
+		<!-- <a href="Register" class='register'> Register </a> -->
 	</div>
 
+	<!-- Google Signin Modal -->
+	<div class="modal fade" id="googleSignin">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>One fine body&hellip;</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 </div>

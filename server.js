@@ -15,7 +15,7 @@ var Firebase = require("firebase");
 
 
 //PORTS
-var port = 9999;
+var port = process.env.IAMSKOOT_PORT || 9999;
 var MongoUri = "mongodb://localhost:27017/scheduler";
 
 var app = Express();

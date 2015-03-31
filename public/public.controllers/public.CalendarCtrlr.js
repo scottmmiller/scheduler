@@ -32,12 +32,13 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, 
 				var date3 = new Date(date.getTime() + 3600000);
 				dateObj.title = "Time Slot Filled";
 				dateObj.start =  date.toDateString() + " at " + date.getHours() + ":" + date.getMinutes();
-				
+				console.log("dateObj.start: ", dateObj.start)
 				date.setHours(date.getHours()+1);
 				dateObj.end = date.toDateString() + " at " + date.toLocaleTimeString();
 				// console.log(date.toDateString() + " @ " + date.toLocaleTimeString())
 
 				//****PUSH TO EVENTS ARRAY******
+				console.log("dateObj: ", dateObj)
 		        $scope.events.push({title: dateObj.title, start: date2, end: date3});
 		        // console.log($scope.events)
 		        // console.log(dateObj.title + " on " + dateObj.start)
@@ -86,7 +87,20 @@ app.controller("CalendarCtrlr", function($scope, $http, $firebase, userService, 
 
 	// $scope.putCalendar = putCalendar;
 
-
+	// createDialog([template_url],{
+	//     id : [modal_id],
+	//     title: [modal_title],
+	//     backdrop: [backdrop_visible],
+	//     success: [modal_success_button],
+	//     cancel: [modal_cancel_button],
+	//     controller: [modal_controller],
+	//     backdropClass: [modal_backdrop_class],
+	//     footerTemplate: [modal_footer_template],
+	//     modalClass: [modal_class],
+	//     css: {
+	//         [css properties key: value]
+	//     }
+	// }, {modal_custom_data});
 
 
 });
